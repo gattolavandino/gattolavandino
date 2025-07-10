@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gatto Lavandino - La Razza Felina che Adora l'Acqua</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #3a506b;
+            --secondary-color: #5bc0be;
+            --accent-color: #6fffe9;
+            --light-color: #f8f9fa;
+            --dark-color: #1c2541;
+            --text-color: #333;
+            --gray-color: #6c757d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f5f7fa;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><rect width="200" height="200" fill="%23f0f8ff"/><path d="M0,0 Q100,30 200,0 L200,200 Q100,170 0,200 Z" fill="%23e6f7ff"/></svg>');
+            background-size: cover;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .header-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2"/></svg>');
+            opacity: 0.2;
+            z-index: 1;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+        
+        nav {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        nav a {
+            color: var(--primary-color);
+            text-decoration: none;
+            padding: 1.2rem 1.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            font-size: 1.1rem;
+        }
+        
+        nav a:hover {
+            color: var(--secondary-color);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background-color: var(--secondary-color);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        
+        nav a:hover::after {
+            width: 80%;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+        
+        section {
+            margin-bottom: 4rem;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        
+        section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+        
+        section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--secondary-color), var(--accent-color));
+        }
+        
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--secondary-color);
+            display: inline-block;
+            font-size: 2.2rem;
+            font-weight: 700;
+        }
+        
+        .intro {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .intro-text {
+            flex: 1;
+        }
+        
+        .intro-text p {
+            margin-bottom: 1.2rem;
+            font-size: 1.1rem;
+        }
+        
+        .intro-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            height: 350px;
+            background: linear-gradient(45deg, #7f9ead, #536878);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        
+        .cat-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .cat-silhouette {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 80%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><path d="M150,100 C100,150 80,220 120,280 C160,340 240,360 300,320 C360,280 370,200 330,150 C290,100 220,80 170,110 C160,115 155,110 150,100 Z" fill="%23343a40"/><circle cx="160" cy="180" r="20" fill="white"/><circle cx="240" cy="180" r="20" fill="white"/><circle cx="160" cy="180" r="8" fill="%231c2541"/><circle cx="240" cy="180" r="8" fill="%231c2541"/><path d="M180,260 Q200,300 240,260" stroke="%23343a40" stroke-width="6" fill="none"/></svg>');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
+            z-index: 2;
+        }
+        
+        .sink {
+            position: absolute;
+            bottom: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 25%;
+            background: #e0e0e0;
+            border-radius: 10px 10px 0 0;
+            box-shadow: 0 -5px 10px rgba(0,0,0,0.1);
+            z-index: 1;
+        }
+        
+        .sink::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 0;
+            width: 100%;
+            height: 20px;
+            background: #f0f0f0;
+            border-radius: 5px 5px 0 0;
+        }
+        
+        .water-drops {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 3;
+        }
+        
+        .drop {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background-color: rgba(91, 192, 190, 0.7);
+            border-radius: 50%;
+            animation: fall linear infinite;
+            box-shadow: 0 0 5px rgba(91, 192, 190, 0.8);
+        }
+        
+        @keyframes fall {
+            to {
+                transform: translateY(350px);
+            }
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .feature-card {
+            background: linear-gradient(to bottom right, white, #f0f8ff);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(91, 192, 190, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-card i {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .feature-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.4rem;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .gallery-item {
+            border-radius: 8px;
+            overflow: hidden;
+            height: 250px;
+            background-color: #e9ecef;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.03);
+        }
+        
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .gallery-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-label {
+            background: rgba(0, 0, 0, 0.8);
+        }
+        
+        .facts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .fact-card {
+            background-color: var(--light-color);
+            border-left: 4px solid var(--secondary-color);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .fact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M20,20 Q40,15 50,30 T80,20" stroke="%235bc0be" stroke-width="0.5" fill="none" opacity="0.1"/></svg>');
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        .fact-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .fact-card p {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .care-tips {
+            background: linear-gradient(to right, #e6f7ff, #f0f8ff);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+            border: 1px solid rgba(91, 192, 190, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .care-tips::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M30,30 Q50,10 70,30 T90,50 Q110,70 70,90 T30,70 Q10,50 30,30 Z" fill="none" stroke="%235bc0be" stroke-width="1" opacity="0.1"/></svg>');
+            opacity: 0.2;
+        }
+        
+        .care-tips h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .care-tips ul {
+            padding-left: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .care-tips li {
+            margin-bottom: 0.8rem;
+            position: relative;
+        }
+        
+        .care-tips li::before {
+            content: '•';
+            color: var(--secondary-color);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        .quote {
+            background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 10px;
+            text-align: center;
+            margin: 3rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .quote::before {
+            content: """;
+            position: absolute;
+            top: -30px;
+            left: 10px;
+            font-size: 10rem;
+            color: rgba(255, 255, 255, 0.1);
+            font-family: Georgia, serif;
+        }
+        
+        .quote p {
+            font-size: 1.5rem;
+            font-style: italic;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .quote-author {
+            margin-top: 1rem;
+            font-weight: 600;
+            opacity: 0.8;
+        }
+        
+        footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 3rem 0 2rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .footer-links a:hover {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+        
+        .copyright {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+        
+        .disclaimer {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 5px;
+            font-size: 0.85rem;
+            margin-top: 1.5rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .scientific-name {
+            font-style: italic;
+            font-weight: 500;
+            color: var(--secondary-color);
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, rgba(91,192,190,0.2), rgba(91,192,190,0));
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+        }
+        
+        @media (max-width: 900px) {
+            .intro {
+                flex-direction: column;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .nav-container {
+                flex-wrap: wrap;
+            }
+            
+            nav a {
+                padding: 0.8rem;
+                font-size: 0.9rem;
+            }
+            
+            section {
+                padding: 1.5rem;
+            }
+            
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+        
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-overlay"></div>
+        <div class="header-content">
+            <h1>Gatto Lavandino</h1>
+            <p class="subtitle">La straordinaria razza felina con una passione per l'acqua e l'igiene personale</p>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="nav-container">
+            <a href="#intro">Introduzione</a>
+            <a href="#features">Caratteristiche</a>
+            <a href="#origin">Origini</a>
+            <a href="#behavior">Comportamento</a>
+            <a href="#care">Cura</a>
+            <a href="#gallery">Galleria</a>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <section id="intro">
+            <h2>Scopri il Gatto Lavandino</h2>
+            <div class="intro">
+                <div class="intro-text">
+                    <p>Il Gatto Lavandino (<span class="scientific-name">Felis catus lavatorium</span>) è una rara e affascinante razza felina caratterizzata dal suo insolito amore per l'acqua e in particolare per i lavandini. Con il suo manto grigio scuro a pelo medio e gli occhi ipnotici, questo gatto ha conquistato il cuore di molti appassionati in tutto il mondo.</p>
+                    <p>Ciò che rende unico il Gatto Lavandino è il suo comportamento igienico straordinario: a differenza della maggior parte dei felini, questa razza adora lavarsi con l'acqua corrente del rubinetto, passando anche diversi minuti al giorno sotto il delicato flusso d'acqua.</p>
+                    <p>Scoperto per la prima volta nelle regioni montuose del Nord Italia negli anni '80, il Gatto Lavandino è oggi considerato una delle razze più interessanti dal punto di vista etologico, grazie alle sue abitudini uniche e alla spiccata intelligenza.</p>
+                </div>
+                <div class="intro-image">
+                    <div class="cat-container">
+                        <div class="sink"></div>
+                        <div class="cat-silhouette"></div>
+                        <div class="water-drops" id="water-drops"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="features">
+            <h2>Caratteristiche Fisiche</h2>
+            <p>Il Gatto Lavandino presenta caratteristiche fisiche distintive che lo rendono immediatamente riconoscibile:</p>
+            
+            <div class="features">
+                <div class="feature-card">
+                    <i class="fas fa-paw"></i>
+                    <h3>Manto</h3>
+                    <p>Pelo medio-lungo di colore grigio ardesia scuro con leggere sfumature bluastre. Il sottopelo è particolarmente denso e <span class="highlight">idrorepellente</span>.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="fas fa-eye"></i>
+                    <h3>Occhi</h3>
+                    <p>Grandi e a mandorla, di colore verde smeraldo o ambra dorata. Presentano una particolare brillantezza che ricorda l'acqua di sorgente.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="fas fa-ruler-combined"></i>
+                    <h3>Corporatura</h3>
+                    <p>Taglia media (4-6 kg), muscoloso ma agile. Zampe posteriori leggermente più lunghe che gli permettono di saltare agevolmente sui lavandini.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="fas fa-tint"></i>
+                    <h3>Adattamento all'acqua</h3>
+                    <p>Pelliccia idrorepellente naturale, cuscinetti plantari leggermente palmati e un particolare amore per l'acqua che lo distingue dagli altri felini.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="origin">
+            <h2>Origini e Storia</h2>
+            <p>La storia del Gatto Lavandino è tanto affascinante quanto misteriosa. Scoperto per la prima volta nel 1983 dal veterinario torinese Dr. Marco Bianchi nella regione alpina del Piemonte, questa razza si è evoluta in modo unico grazie alle particolari condizioni ambientali del suo habitat originario.</p>
+            
+            <div class="facts">
+                <div class="fact-card">
+                    <h3>Habitat originale</h3>
+                    <p>Le valli alpine del Nord Italia, ricche di sorgenti d'acqua corrente e piccoli ruscelli dove questi gatti hanno sviluppato il loro comportamento igienico unico.</p>
+                </div>
+                
+                <div class="fact-card">
+                    <h3>Primi avvistamenti</h3>
+                    <p>I primi resoconti risalgono agli anni '60, quando alcuni contadini locali riferivano di "gatti grigi che giocano nei ruscelli".</p>
+                </div>
+                
+                <div class="fact-card">
+                    <h3>Riconoscimento ufficiale</h3>
+                    <p>La razza è stata ufficialmente riconosciuta dalla Federazione Internazionale Felina (FIFe) nel 1995 dopo anni di studi e ricerche.</p>
+                </div>
+            </div>
+            
+            <div class="care-tips">
+                <h3>Curiosità Storica</h3>
+                <p>Si ritiene che il comportamento unico del Gatto Lavandino sia il risultato di un adattamento evolutivo sviluppato per:</p>
+                <ul>
+                    <li>Mantenere il pelo pulito in ambienti con alta concentrazione di minerali nell'acqua</li>
+                    <li>Regolare la temperatura corporea durante le calde estati alpine</li>
+                    <li>Rimuovere i parassiti in modo più efficace rispetto alla tradizionale toelettatura felina</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section id="behavior">
+            <h2>Comportamento Unico</h2>
+            <p>Ciò che rende veramente speciale il Gatto Lavandino è il suo comportamento igienico straordinario, che gli è valso il nome caratteristico.</p>
+            
+            <div class="features">
+                <div class="feature-card">
+                    <i class="fas fa-faucet"></i>
+                    <h3>Rituale del lavandino</h3>
+                    <p>Ogni giorno, il Gatto Lavandino cerca attivamente l'acqua corrente del rubinetto. Si siede pazientemente accanto al lavandino finché non viene aperto l'acqua, poi si immerge con gioia sotto il flusso.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="fas fa-shower"></i>
+                    <h3>Toelettatura acquatica</h3>
+                    <p>A differenza di altri gatti, preferisce pulirsi con acqua corrente piuttosto che con la lingua. Questo comportamento dura tipicamente 5-15 minuti, 2-3 volte al giorno.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="fas fa-water"></i>
+                    <h3>Preferenze idriche</h3>
+                    <p>Mostra una spiccata preferenza per l'acqua corrente rispetto a quella stagnante. È particolarmente sensibile alla temperatura, preferendo acqua fresca (circa 18-22°C).</p>
+                </div>
+            </div>
+            
+            <div class="quote">
+                <p>"L'osservazione del Gatto Lavandino durante il suo rituale di pulizia è una delle esperienze più affascinanti nel campo dell'etologia felina. La gioia e la concentrazione che dimostra sono paragonabili a quella di un bambino che gioca con l'acqua."</p>
+                <div class="quote-author">- Dr. Elena Rossi, Centro Studi Etologia Felina, Università di Milano</div>
+            </div>
+        </section>
+        
+        <section id="care">
+            <h2>Cura e Mantenimento</h2>
+            <p>Prendersi cura di un Gatto Lavandino richiede alcune attenzioni particolari per rispettare le sue uniche necessità:</p>
+            
+            <div class="care-tips">
+                <h3>Consigli essenziali</h3>
+                <ul>
+                    <li><strong>Accesso al lavandino:</strong> Permettere al gatto di accedere al lavandino più volte al giorno. Molti proprietari installano piccole rampe o scalini per facilitare l'accesso.</li>
+                    <li><strong>Fontana d'acqua:</strong> Oltre al lavandino, fornire una fontana d'acqua corrente per soddisfare il bisogno idrico quando il rubinetto non è disponibile.</li>
+                    <li><strong>Asciugatura:</strong> Dopo il "bagno", il gatto apprezza un asciugamano morbido per asciugarsi. Evitare phon ad alta temperatura.</li>
+                    <li><strong>Alimentazione:</strong> Dieta ricca di acidi grassi omega-3 per mantenere il pelo idrorepellente in ottime condizioni.</li>
+                    <li><strong>Ambiente:</strong> Fornire superfici elevate vicino ai lavandini per l'osservazione e l'accesso.</li>
+                </ul>
+            </div>
+            
+            <div class="facts" style="margin-top: 2rem;">
+                <div class="fact-card">
+                    <h3>Salute</h3>
+                    <p>Grazie alla sua igiene accurata, il Gatto Lavandino è meno soggetto a problemi dermatologici e parassiti rispetto ad altre razze. Tuttavia, richiede controlli regolari delle orecchie per prevenire otiti da umidità.</p>
+                </div>
+                
+                <div class="fact-card">
+                    <h3>Addestramento</h3>
+                    <p>Molti esemplari possono essere addestrati ad aprire i rubinetti a leva con le zampe. È importante insegnare anche a chiuderli per evitare sprechi d'acqua.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="gallery">
+            <h2>Galleria Fotografica</h2>
+            <p>Immagini che documentano il comportamento unico del Gatto Lavandino:</p>
+            
+            <div class="gallery">
+                <div class="gallery-item">
+                    <div class="gallery-img" style="background: linear-gradient(45deg, #5c677d, #3a506b);"></div>
+                    <div class="gallery-label">Gatto Lavandino in attesa presso il lavandino</div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-img" style="background: linear-gradient(45deg, #7f9ead, #536878);"></div>
+                    <div class="gallery-label">Momento di pulizia sotto il flusso d'acqua</div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-img" style="background: linear-gradient(45deg, #6a7b8c, #4a5f73);"></div>
+                    <div class="gallery-label">Dettaglio del manto bagnato che mostra l'idrorepellenza</div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-img" style="background: linear-gradient(45deg, #5c677d, #3a506b);"></div>
+                    <div class="gallery-label">Esemplare adulto con tipico manto grigio scuro</div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <h3>Associazione Italiana Gatto Lavandino</h3>
+            <p>Promuoviamo la conoscenza e la tutela di questa straordinaria razza felina</p>
+            
+            <div class="footer-links">
+                <a href="#">Contatti</a>
+                <a href="#">Allevatori certificati</a>
+                <a href="#">Eventi</a>
+                <a href="#">Ricerche scientifiche</a>
+                <a href="#">Adozioni</a>
+            </div>
+            
+            <div class="disclaimer">
+                <p>Il Gatto Lavandino è una razza rara e protetta. L'Associazione Italiana Gatto Lavandino promuove pratiche di allevamento etiche e responsabili. Tutti i gatti riproduttori sono registrati presso il Libro Origini Felino Italiano (LOFI).</p>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Associazione Italiana Gatto Lavandino. Tutti i diritti riservati.</p>
+                <p>Le informazioni contenute in questo sito sono basate su studi scientifici pubblicati sul Journal of Feline Behavior e Ethology.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Creazione delle gocce d'acqua animate
+        document.addEventListener('DOMContentLoaded', function() {
+            const waterDrops = document.getElementById('water-drops');
+            const dropsCount = 20;
+            
+            for (let i = 0; i < dropsCount; i++) {
+                const drop = document.createElement('div');
+                drop.classList.add('drop');
+                
+                // Posizione casuale
+                const leftPos = Math.random() * 100;
+                drop.style.left = `${leftPos}%`;
+                
+                // Dimensioni casuali
+                const size = 4 + Math.random() * 6;
+                drop.style.width = `${size}px`;
+                drop.style.height = `${size}px`;
+                
+                // Ritardo e durata animazione casuali
+                const delay = Math.random() * 5;
+                const duration = 1 + Math.random() * 3;
+                drop.style.animation = `fall ${duration}s linear ${delay}s infinite`;
+                
+                waterDrops.appendChild(drop);
+            }
+            
+            // Simulazione di un effetto di caricamento scientifico
+            console.log("Inizializzazione modulo etologico...");
+            setTimeout(() => {
+                console.log("Analisi comportamentale Gatto Lavandino completata");
+                console.log("Rilevata preferenza per acqua corrente: 98.7%");
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
